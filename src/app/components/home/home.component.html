@@ -1,8 +1,7 @@
 <h1>Home</h1>
 <nav>
   <ul>
-    <li><a routerLink="/element/1" routerLinkActive="active" ariaCurrentWhenActive="page">Element 1</a></li>
-    <li><a routerLink="/element/2" routerLinkActive="active" ariaCurrentWhenActive="page">Element 2</a></li>
+    <li *ngFor="let e of elements"><a routerLink="/element/{{e.id}}" routerLinkActive="active" ariaCurrentWhenActive="page">{{e.str}}</a></li>
   </ul>
 </nav>
 <router-outlet />
