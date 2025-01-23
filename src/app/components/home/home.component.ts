@@ -5,11 +5,10 @@ import { Element } from '../../entities/element';
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterModule, NgFor],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    imports: [RouterModule, NgFor],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
   constructor(private elementService: ElementService) {}
