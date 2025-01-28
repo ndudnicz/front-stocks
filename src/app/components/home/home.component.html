@@ -1,7 +1,24 @@
-<h1>Home</h1>
-<nav>
-  <ul>
-    <li *ngFor="let e of elements"><a routerLink="/element/{{e.id}}" routerLinkActive="active" ariaCurrentWhenActive="page">{{e.str}}</a></li>
-  </ul>
-</nav>
-<router-outlet />
+<div id="home-container">
+  <h1>Dashboard</h1>
+
+  <div class="column-container">
+    <div class="column">
+      @for (e of columns['todo']; track e.id) {
+      <app-element-card [e]="e" />
+      }
+    </div>
+    <p-divider layout="vertical" />
+    <div class="column">
+      @for (e of columns['doing']; track e.id) {
+      <app-element-card [e]="e" />
+      }
+    </div>
+    <p-divider layout="vertical" />
+    <div class="column">
+      @for (e of columns['done']; track e.id) {
+      <app-element-card [e]="e" />
+      }
+    </div>
+  </div>
+  <router-outlet />
+</div>

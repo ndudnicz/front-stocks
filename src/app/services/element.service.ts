@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateElementDto, Element } from '../entities/element';
+import { CreateElementDto, Elem } from '../entities/element';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class ElementService {
   constructor(private http: HttpClient) {
   }
 
-  get(): Promise<Element[]> {
-    return new Promise<Element[]>((resolve, reject) => {
+  get(): Promise<Elem[]> {
+    return new Promise<Elem[]>((resolve, reject) => {
       this.http.get(`${this.baseUri}/v1/element`).subscribe({
         next: (data: any) => {
           resolve(data);
@@ -25,8 +25,8 @@ export class ElementService {
     })
   }
 
-  create(element: CreateElementDto): Promise<Element> {
-    return new Promise<Element>((resolve, reject) => {
+  create(element: CreateElementDto): Promise<Elem> {
+    return new Promise<Elem>((resolve, reject) => {
       this.http.post(`${this.baseUri}/v1/element`, element).subscribe({
         next: (data: any) => {
           resolve(data);

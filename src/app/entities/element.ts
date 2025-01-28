@@ -1,6 +1,7 @@
-export interface Element {
+export interface Elem {
     id: number;
     str: string;
+    status: number;
 }
 
 export interface CreateElementDto {

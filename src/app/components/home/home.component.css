@@ -1,0 +1,11 @@
+#home-container {
+    margin: 10px;
+}
+
+.column-container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+}
