@@ -4,6 +4,7 @@ import { ElementService } from '../../services/element.service';
 import { Elem } from '../../entities/element';
 import { ElementCardComponent } from './element-card/element-card.component';
 import { DividerModule } from 'primeng/divider';
+import { SignalRService } from '../../services/signalr.service';
 
 @Component({
     selector: 'app-home',
@@ -16,7 +17,10 @@ import { DividerModule } from 'primeng/divider';
     styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  constructor(private elementService: ElementService) {}
+  constructor(
+    private elementService: ElementService,
+    private signalrService: SignalRService
+  ) {}
 
   elements: Elem[] = []
   columns : any = {
@@ -26,9 +30,10 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.elements = await this.elementService.get();
-    this.elements.forEach((e) => {
-      this.columns[e.status].push(e);
-    })
+    // this.elements = await this.elementService.get();
+    // this.elements.forEach((e) => {
+    //   this.columns[e.status].push(e);
+    // })
+    this.signalrService.startConnection();
   }
 }
