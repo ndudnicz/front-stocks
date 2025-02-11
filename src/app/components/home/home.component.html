@@ -1,19 +1,16 @@
 <div id="home-container">
-    <h1>Dashboard</h1>
+  <h1>Dashboard</h1>
+  <i>last updated : {{ lastUpdated | date: 'HH:mm:ss dd-MM-yyyy' }}</i>
 
   <div class="column-container">
     <div class="column">
       <p>Rises</p>
-      @for (e of rises; track e.isin) {
-      <app-element-card [e]="e" />
-      }
+      <app-element-card *ngFor="let e of rises" [e]="e" />
     </div>
     <p-divider layout="vertical" />
     <div class="column">
       <p>Falls</p>
-      @for (e of falls; track e.isin) {
-      <app-element-card [e]="e" />
-      }
+      <app-element-card *ngFor="let e of falls" [e]="e" />
     </div>
   </div>
   <router-outlet />

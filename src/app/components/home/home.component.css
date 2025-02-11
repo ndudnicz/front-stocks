@@ -11,3 +11,8 @@
 .column {
     flex: 1;
 }
+
+.card-container {
+    width: 100%;
+    height: 100%;
+}

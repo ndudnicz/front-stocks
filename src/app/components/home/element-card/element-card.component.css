@@ -1,7 +1,6 @@
 .element-card {
     margin-top: 5px;
-    cursor: pointer;
-    height: 60px;
+    height: 85px;
 }
 
 .element-card-header {
@@ -43,13 +42,6 @@
     display: flex;
     justify-content: space-between;
     
-}
-.edit {
-    cursor: pointer;
-}
-.edit:hover {
-    background-color: var(--gray-900) !important;
-    border-radius: 5px !important;
 }
 
 .plus {

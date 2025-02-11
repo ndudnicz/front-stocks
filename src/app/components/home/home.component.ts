@@ -7,37 +7,43 @@ import { DividerModule } from 'primeng/divider';
 import { SignalRService } from '../../services/signalr.service';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-home',
-    imports: [
-      RouterModule,
-      ElementCardComponent,
-      DividerModule
-    ],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.css'
+  selector: 'app-home',
+  imports: [
+    RouterModule,
+    ElementCardComponent,
+    DividerModule,
+    CommonModule
+  ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private stockService: StockService,
     private signalrService: SignalRService,
     private dataService: DataService
-  ) {}
+  ) { }
 
   stocks: Stock[] = [];
   falls: Stock[] = [];
   rises: Stock[] = [];
+  lastUpdated = '/';
 
   private stockSubscription!: Subscription;
 
   async ngOnInit() {
-    // this.stocks = await this.stockService.get();
-    // this.sortData();
+    this.stocks = await this.stockService.get();
+    this.sortData();
     this.signalrService.startConnection();
-    this.stockSubscription = this.dataService.todos.subscribe(value => {
-      this.stocks = value;
-      this.sortData();
+    this.stockSubscription = this.dataService.todos.subscribe((value: Stock[]) => {
+      console.log('new value received', value, 'current stocks', this.stocks);
+      if (value.length > 0) {
+        this.lastUpdated = new Date().toISOString();
+        this.sortData();
+      }
     });
   }
 
@@ -47,8 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   sortData() {
-    console.log('sortData');
-    
+    console.log('sortData', this.stocks);
     this.rises = [];
     this.falls = [];
     this.stocks.forEach((e: Stock) => {
@@ -58,8 +63,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.rises.push(e);
       }
     });
-    this.rises.sort((a: Stock, b: Stock) => a.variation - b.variation);
+    this.rises.sort((a: Stock, b: Stock) => b.variation - a.variation);
     this.falls.sort((a: Stock, b: Stock) => a.variation - b.variation);
-    console.log('rises',this.rises, 'falls', this.falls);
+    console.log('rises', this.rises, 'falls', this.falls);
   }
 }

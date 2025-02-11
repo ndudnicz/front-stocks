@@ -9,7 +9,7 @@ import { DataService } from './data.service';
 export class SignalRService {
   private hubConnection!: signalR.HubConnection;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   public stopConnection = () => {
     this.hubConnection.stop().then(() => {
@@ -41,8 +41,8 @@ export class SignalRService {
   }
 
   public addMessageListener = () => {
-    this.hubConnection.on('messageReceived', (msg: Stock) => {
-      console.log(`message: ${msg.isin}, ${msg.lastPrice}, ${msg.variation}`);
+    this.hubConnection.on('messageReceived', (msg: Stock[]) => {
+      console.log(`messageReceived: ${msg}`);
       this.dataService.upsertStockValue(msg);
     });
   }

@@ -16,12 +16,7 @@ constructor() { }
     this._stocks.next(stocks);
   }
 
-  upsertStockValue(stock: Stock) {
-    let stocks = this._stocks.getValue();
-    stocks = stocks.filter(s => s.isin == stock.isin);
-    stocks.push(stock);
-    console.log('dataservice', stocks);
-    
+  upsertStockValue(stocks: Stock[]) {
     this._stocks.next(stocks);
   }
 }
