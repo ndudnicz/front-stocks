@@ -4,6 +4,8 @@
 
 .column-container {
     display: flex;
+    max-width: 800px;
+    margin: auto;
 }
 
 .column {

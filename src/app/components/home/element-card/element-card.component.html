@@ -2,18 +2,17 @@
     <p-card [style]="{padding: '0.8rem 0.6rem', background: '#ddd'}">
         <ng-template pTemplate="header">
             <div class="element-card-header">
-                {{elem.str}}
+                {{ elem.name }} ({{elem.isin}}) <span [class]="{'minus': elem.variation < 0, 'plus': elem.variation >= 0}">{{ variationStr }}</span>
             </div>
         </ng-template>
         <div class="metadata">
-            <span>date</span>
-            <span>data_1</span>
+            <span>Last price : {{ elem.lastPrice }}</span>
         </div>
-        <ng-template pTemplate="footer">
+        <!-- <ng-template pTemplate="footer">
             <div>
-                <!-- <p-tag [value]="idStr"
-                    [style]="{ 'background': 'rgba(0,0,0,0)', color:'var(--accent-color-1)', belement:'1px solid var(--accent-color-1)', height: '20px', fontSize:'10px', marginRight: '2px'}"></p-tag> -->
+                <p-tag [value]="lastPriceStr"
+                    [style]="{ 'background': 'rgba(0,0,0,0)', color:'var(--accent-color-1)', belement:'1px solid var(--accent-color-1)', height: '20px', fontSize:'10px', marginRight: '2px'}"></p-tag>
             </div>
-        </ng-template>
+        </ng-template> -->
     </p-card>
 </div>

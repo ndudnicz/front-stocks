@@ -1,7 +1,7 @@
 .element-card {
     margin-top: 5px;
     cursor: pointer;
-    height: 110px;
+    height: 60px;
 }
 
 .element-card-header {
@@ -27,7 +27,7 @@
 }
 
 .metadata {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: #555;
 }
 
@@ -50,4 +50,12 @@
 .edit:hover {
     background-color: var(--gray-900) !important;
     border-radius: 5px !important;
+}
+
+.plus {
+    color: green !important;
+}
+
+.minus {
+    color: red !important;
 }

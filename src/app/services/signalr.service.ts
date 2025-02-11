@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { MyMessage } from '../entities/action';
+import { Stock } from '../entities/stock';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,17 @@ import { MyMessage } from '../entities/action';
 export class SignalRService {
   private hubConnection!: signalR.HubConnection;
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
+
+  public stopConnection = () => {
+    this.hubConnection.stop().then(() => {
+      console.log('SignalR Connection stopped');
+    });
+  }
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5001/hub') // URL of the SignalR hub
+      .withUrl('http://localhost:5000/hub') // URL of the SignalR hub
       .build();
 
     this.hubConnection
@@ -34,8 +41,9 @@ export class SignalRService {
   }
 
   public addMessageListener = () => {
-    this.hubConnection.on('messageReceived', (msg: MyMessage) => {
-      console.log(`message: ${msg}`);
+    this.hubConnection.on('messageReceived', (msg: Stock) => {
+      console.log(`message: ${msg.isin}, ${msg.lastPrice}, ${msg.variation}`);
+      this.dataService.upsertStockValue(msg);
     });
   }
 

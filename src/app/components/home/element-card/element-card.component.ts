@@ -1,6 +1,6 @@
 import { Component, input, OnInit } from '@angular/core';
 import { TagModule } from 'primeng/tag';
-import { Elem } from '../../../entities/element'
+import { Stock } from '../../../entities/stock'
 import { CardModule } from 'primeng/card';
 
 @Component({
@@ -10,12 +10,14 @@ import { CardModule } from 'primeng/card';
   styleUrl: './element-card.component.css'
 })
 export class ElementCardComponent implements OnInit {
-  e = input<Elem>({} as Elem);
-  elem!: Elem;
-  idStr!: string;
+  e = input<Stock>({} as Stock);
+  elem!: Stock;
+  lastPriceStr = '';
+  variationStr = '';
   ngOnInit() {
     this.elem = this.e();
-    this.idStr = this.elem.id.toString()
+    this.lastPriceStr = this.elem.lastPrice.toString();
+    this.variationStr = `${this.elem.variation >= 0 ? '+' : ''}${this.elem.variation.toString()}%`;
   }
   
 }

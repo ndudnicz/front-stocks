@@ -1,21 +1,17 @@
 <div id="home-container">
-  <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
 
   <div class="column-container">
     <div class="column">
-      @for (e of columns['todo']; track e.id) {
+      <p>Rises</p>
+      @for (e of rises; track e.isin) {
       <app-element-card [e]="e" />
       }
     </div>
     <p-divider layout="vertical" />
     <div class="column">
-      @for (e of columns['doing']; track e.id) {
-      <app-element-card [e]="e" />
-      }
-    </div>
-    <p-divider layout="vertical" />
-    <div class="column">
-      @for (e of columns['done']; track e.id) {
+      <p>Falls</p>
+      @for (e of falls; track e.isin) {
       <app-element-card [e]="e" />
       }
     </div>
