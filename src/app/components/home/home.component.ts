@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stockSubscription = this.dataService.todos.subscribe((value: Stock[]) => {
       console.log('new value received', value, 'current stocks', this.stocks);
       if (value.length > 0) {
+        this.stocks = value;
         this.lastUpdated = new Date().toISOString();
         this.sortData();
       }
